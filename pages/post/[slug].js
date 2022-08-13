@@ -2,8 +2,15 @@ import React from "react";
 import { Author, Comments, PostDetail, PostWidget } from "../../components";
 import Categories from "../../components/Categories";
 import { getAllPosts, getPost, graphcms } from "../api/video";
+import { useRouter } from "next/router";
 
 const Post = ({ post }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return "...loading";
+  }
+
   return (
     <div className="container mx-auto mt-10 ">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
@@ -40,6 +47,5 @@ export const getStaticProps = async ({ params }) => {
     props: {
       post,
     },
-    revalidate: 10,
   };
 };
