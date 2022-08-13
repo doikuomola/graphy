@@ -1,13 +1,17 @@
 import React from "react";
 import parse from "html-react-parser";
+import Image from "next/image";
 
 const PostDetail = ({ post }) => {
   return (
     <div className="bg-white rounded-lg p-10 shadow-lg">
-      <img
+      <Image
+        unoptimized
         src={post.image.url}
         alt={post.title}
-        className="w-full h-100 rounded-lg object-cover"
+        width="1200px"
+        height="600px"
+        className="rounded-lg object-cover"
       />
       <h1 className="my-4 text-2xl text-center font-semibold">{post.title}</h1>
       <p>{parse(post.content.html)}</p>
